@@ -1,0 +1,4225 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "wren-ai-service API Docs",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/v1/asks": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Ask",
+                "operationId": "ask_v1_asks_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AskRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AskResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/asks/{query_id}": {
+            "patch": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Stop Ask",
+                "operationId": "stop_ask_v1_asks__query_id__patch",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopAskRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StopAskResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/asks/{query_id}/result": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Ask Result",
+                "operationId": "get_ask_result_v1_asks__query_id__result_get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AskResultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/asks/{query_id}/streaming-result": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Ask Streaming Result",
+                "operationId": "get_ask_streaming_result_v1_asks__query_id__streaming_result_get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/ask-feedbacks": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Ask Feedback",
+                "operationId": "ask_feedback_v1_ask_feedbacks_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AskFeedbackRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AskFeedbackResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/ask-feedbacks/{query_id}": {
+            "patch": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Stop Ask Feedback",
+                "operationId": "stop_ask_feedback_v1_ask_feedbacks__query_id__patch",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopAskFeedbackRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StopAskFeedbackResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Ask Feedback Result",
+                "operationId": "get_ask_feedback_result_v1_ask_feedbacks__query_id__get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AskFeedbackResultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/question-recommendations": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Recommend",
+                "operationId": "recommend_v1_question_recommendations_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__question_recommendation__PostRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__question_recommendation__PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/question-recommendations/{event_id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get",
+                "operationId": "get_v1_question_recommendations__event_id__get",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Event Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__question_recommendation__GetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/relationship-recommendations": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Recommend",
+                "operationId": "recommend_v1_relationship_recommendations_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__relationship_recommendation__PostRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__relationship_recommendation__PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/relationship-recommendations/{id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get",
+                "operationId": "get_v1_relationship_recommendations__id__get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__relationship_recommendation__GetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/semantics-descriptions": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Generate",
+                "operationId": "generate_v1_semantics_descriptions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__semantics_description__PostRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__semantics_description__PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/semantics-descriptions/{id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get",
+                "operationId": "get_v1_semantics_descriptions__id__get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__semantics_description__GetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/semantics-preparations": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Prepare Semantics",
+                "operationId": "prepare_semantics_v1_semantics_preparations_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SemanticsPreparationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SemanticsPreparationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/semantics-preparations/{mdl_hash}/status": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Prepare Semantics Status",
+                "operationId": "get_prepare_semantics_status_v1_semantics_preparations__mdl_hash__status_get",
+                "parameters": [
+                    {
+                        "name": "mdl_hash",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Mdl Hash"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SemanticsPreparationStatusResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/semantics": {
+            "delete": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Delete Semantics",
+                "operationId": "delete_semantics_v1_semantics_delete",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Project Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-answers": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Sql Answer",
+                "operationId": "sql_answer_v1_sql_answers_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SqlAnswerRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlAnswerResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-answers/{query_id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Sql Answer Result",
+                "operationId": "get_sql_answer_result_v1_sql_answers__query_id__get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlAnswerResultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-answers/{query_id}/streaming": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Sql Answer Streaming Result",
+                "operationId": "get_sql_answer_streaming_result_v1_sql_answers__query_id__streaming_get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/charts": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Chart",
+                "operationId": "chart_v1_charts_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChartRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/charts/{query_id}": {
+            "patch": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Stop Chart",
+                "operationId": "stop_chart_v1_charts__query_id__patch",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopChartRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StopChartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Chart Result",
+                "operationId": "get_chart_result_v1_charts__query_id__get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChartResultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/chart-adjustments": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Chart Adjustment",
+                "operationId": "chart_adjustment_v1_chart_adjustments_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChartAdjustmentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChartAdjustmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/chart-adjustments/{query_id}": {
+            "patch": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Stop Chart Adjustment",
+                "operationId": "stop_chart_adjustment_v1_chart_adjustments__query_id__patch",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopChartAdjustmentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StopChartAdjustmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Chart Adjustment Result",
+                "operationId": "get_chart_adjustment_result_v1_chart_adjustments__query_id__get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChartAdjustmentResultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-pairs": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Prepare",
+                "operationId": "prepare_v1_sql_pairs_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__sql_pairs__PostRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__sql_pairs__PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Delete",
+                "operationId": "delete_v1_sql_pairs_delete",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__sql_pairs__DeleteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Error"
+                                        },
+                                        {
+                                            "type": "null"
+                                        }
+                                    ],
+                                    "title": "Response Delete V1 Sql Pairs Delete"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-pairs/{event_id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get",
+                "operationId": "get_v1_sql_pairs__event_id__get",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Event Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__sql_pairs__GetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-questions": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Sql Question",
+                "operationId": "sql_question_v1_sql_questions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SqlQuestionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlQuestionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-questions/{query_id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get Sql Question Result",
+                "operationId": "get_sql_question_result_v1_sql_questions__query_id__get",
+                "parameters": [
+                    {
+                        "name": "query_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlQuestionResultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/instructions": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Index",
+                "operationId": "index_v1_instructions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__instructions__PostRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__instructions__PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Delete",
+                "operationId": "delete_v1_instructions_delete",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__instructions__DeleteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Error"
+                                        },
+                                        {
+                                            "type": "null"
+                                        }
+                                    ],
+                                    "title": "Response Delete V1 Instructions Delete"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/instructions/{event_id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get",
+                "operationId": "get_v1_instructions__event_id__get",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Event Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__instructions__GetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-corrections": {
+            "post": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Correct",
+                "operationId": "correct_v1_sql_corrections_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/src__web__v1__routers__sql_corrections__PostRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__sql_corrections__PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sql-corrections/{event_id}": {
+            "get": {
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Get",
+                "operationId": "get_v1_sql_corrections__event_id__get",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Event Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/src__web__v1__routers__sql_corrections__GetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dev/pipelines": {
+            "get": {
+                "tags": [
+                    "dev"
+                ],
+                "summary": "Get Pipelines",
+                "operationId": "get_pipelines_dev_pipelines_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": true,
+                                    "type": "object",
+                                    "title": "Response Get Pipelines Dev Pipelines Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dev/pipelines/{pipeline_name}": {
+            "post": {
+                "tags": [
+                    "dev"
+                ],
+                "summary": "Run Pipeline",
+                "operationId": "run_pipeline_dev_pipelines__pipeline_name__post",
+                "parameters": [
+                    {
+                        "name": "pipeline_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Pipeline Name"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "title": "Request Body"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "title": "Response Run Pipeline Dev Pipelines  Pipeline Name  Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "summary": "Root",
+                "operationId": "root__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Health",
+                "operationId": "health_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AskError": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "enum": [
+                            "NO_RELEVANT_DATA",
+                            "NO_RELEVANT_SQL",
+                            "OTHERS"
+                        ],
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "AskError"
+            },
+            "AskFeedbackRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "question": {
+                        "type": "string",
+                        "title": "Question"
+                    },
+                    "tables": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Tables"
+                    },
+                    "sql_generation_reasoning": {
+                        "type": "string",
+                        "title": "Sql Generation Reasoning"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "question",
+                    "tables",
+                    "sql_generation_reasoning",
+                    "sql"
+                ],
+                "title": "AskFeedbackRequest"
+            },
+            "AskFeedbackResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "AskFeedbackResponse"
+            },
+            "AskFeedbackResultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "searching",
+                            "generating",
+                            "correcting",
+                            "finished",
+                            "failed",
+                            "stopped"
+                        ],
+                        "title": "Status"
+                    },
+                    "invalid_sql": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Invalid Sql"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AskError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/components/schemas/AskResult"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Response"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "AskFeedbackResultResponse"
+            },
+            "AskHistory": {
+                "properties": {
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "question": {
+                        "type": "string",
+                        "title": "Question"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sql",
+                    "question"
+                ],
+                "title": "AskHistory"
+            },
+            "AskRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "query": {
+                        "type": "string",
+                        "title": "Query"
+                    },
+                    "mdl_hash": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Mdl Hash"
+                    },
+                    "histories": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/components/schemas/AskHistory"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Histories"
+                    },
+                    "ignore_sql_generation_reasoning": {
+                        "type": "boolean",
+                        "title": "Ignore Sql Generation Reasoning",
+                        "default": false
+                    },
+                    "enable_column_pruning": {
+                        "type": "boolean",
+                        "title": "Enable Column Pruning",
+                        "default": false
+                    },
+                    "use_dry_plan": {
+                        "type": "boolean",
+                        "title": "Use Dry Plan",
+                        "default": false
+                    },
+                    "allow_dry_plan_fallback": {
+                        "type": "boolean",
+                        "title": "Allow Dry Plan Fallback",
+                        "default": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query",
+                    "mdl_hash"
+                ],
+                "title": "AskRequest"
+            },
+            "AskResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "AskResponse"
+            },
+            "AskResult": {
+                "properties": {
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "llm",
+                            "view"
+                        ],
+                        "title": "Type",
+                        "default": "llm"
+                    },
+                    "viewId": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Viewid"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sql"
+                ],
+                "title": "AskResult"
+            },
+            "AskResultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "understanding",
+                            "searching",
+                            "planning",
+                            "generating",
+                            "correcting",
+                            "finished",
+                            "failed",
+                            "stopped"
+                        ],
+                        "title": "Status"
+                    },
+                    "rephrased_question": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Rephrased Question"
+                    },
+                    "intent_reasoning": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Intent Reasoning"
+                    },
+                    "sql_generation_reasoning": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sql Generation Reasoning"
+                    },
+                    "type": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "GENERAL",
+                                    "TEXT_TO_SQL"
+                                ]
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Type"
+                    },
+                    "retrieved_tables": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Retrieved Tables"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/components/schemas/AskResult"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Response"
+                    },
+                    "invalid_sql": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Invalid Sql"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AskError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "AskResultResponse"
+            },
+            "ChartAdjustmentError": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "enum": [
+                            "NO_CHART",
+                            "OTHERS"
+                        ],
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "ChartAdjustmentError"
+            },
+            "ChartAdjustmentOption": {
+                "properties": {
+                    "chart_type": {
+                        "type": "string",
+                        "enum": [
+                            "bar",
+                            "grouped_bar",
+                            "line",
+                            "pie",
+                            "stacked_bar",
+                            "area",
+                            "multi_line"
+                        ],
+                        "title": "Chart Type"
+                    },
+                    "x_axis": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "X Axis"
+                    },
+                    "y_axis": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Y Axis"
+                    },
+                    "x_offset": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "X Offset"
+                    },
+                    "color": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Color"
+                    },
+                    "theta": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Theta"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "chart_type"
+                ],
+                "title": "ChartAdjustmentOption"
+            },
+            "ChartAdjustmentRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "query": {
+                        "type": "string",
+                        "title": "Query"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "adjustment_option": {
+                        "$ref": "#/components/schemas/ChartAdjustmentOption"
+                    },
+                    "chart_schema": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Chart Schema"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query",
+                    "sql",
+                    "adjustment_option",
+                    "chart_schema"
+                ],
+                "title": "ChartAdjustmentRequest"
+            },
+            "ChartAdjustmentResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "ChartAdjustmentResponse"
+            },
+            "ChartAdjustmentResult": {
+                "properties": {
+                    "reasoning": {
+                        "type": "string",
+                        "title": "Reasoning"
+                    },
+                    "chart_type": {
+                        "type": "string",
+                        "enum": [
+                            "line",
+                            "bar",
+                            "pie",
+                            "grouped_bar",
+                            "stacked_bar",
+                            "area",
+                            "multi_line",
+                            ""
+                        ],
+                        "title": "Chart Type"
+                    },
+                    "chart_schema": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Chart Schema"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "reasoning",
+                    "chart_type",
+                    "chart_schema"
+                ],
+                "title": "ChartAdjustmentResult"
+            },
+            "ChartAdjustmentResultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "understanding",
+                            "fetching",
+                            "generating",
+                            "finished",
+                            "failed",
+                            "stopped"
+                        ],
+                        "title": "Status"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ChartAdjustmentResult"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ChartAdjustmentError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "ChartAdjustmentResultResponse"
+            },
+            "ChartError": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "enum": [
+                            "NO_CHART",
+                            "OTHERS"
+                        ],
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "ChartError"
+            },
+            "ChartRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "query": {
+                        "type": "string",
+                        "title": "Query"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "data": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Data"
+                    },
+                    "remove_data_from_chart_schema": {
+                        "type": "boolean",
+                        "title": "Remove Data From Chart Schema",
+                        "default": true
+                    },
+                    "custom_instruction": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Custom Instruction"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query",
+                    "sql"
+                ],
+                "title": "ChartRequest"
+            },
+            "ChartResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "ChartResponse"
+            },
+            "ChartResult": {
+                "properties": {
+                    "reasoning": {
+                        "type": "string",
+                        "title": "Reasoning"
+                    },
+                    "chart_type": {
+                        "type": "string",
+                        "enum": [
+                            "line",
+                            "bar",
+                            "pie",
+                            "grouped_bar",
+                            "stacked_bar",
+                            "area",
+                            "multi_line",
+                            ""
+                        ],
+                        "title": "Chart Type"
+                    },
+                    "chart_schema": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Chart Schema"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "reasoning",
+                    "chart_type",
+                    "chart_schema"
+                ],
+                "title": "ChartResult"
+            },
+            "ChartResultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "fetching",
+                            "generating",
+                            "finished",
+                            "failed",
+                            "stopped"
+                        ],
+                        "title": "Status"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ChartResult"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ChartError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "ChartResultResponse"
+            },
+            "Configuration": {
+                "properties": {
+                    "language": {
+                        "type": "string",
+                        "title": "Language",
+                        "default": "English"
+                    },
+                    "timezone": {
+                        "$ref": "#/components/schemas/Timezone",
+                        "default": {
+                            "name": "UTC",
+                            "utc_offset": ""
+                        }
+                    }
+                },
+                "type": "object",
+                "title": "Configuration"
+            },
+            "Error": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "const": "OTHERS",
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "Error"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "Instruction": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "instruction": {
+                        "type": "string",
+                        "title": "Instruction"
+                    },
+                    "questions": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Questions"
+                    },
+                    "is_default": {
+                        "type": "boolean",
+                        "title": "Is Default",
+                        "default": false
+                    },
+                    "scope": {
+                        "type": "string",
+                        "enum": [
+                            "sql",
+                            "answer",
+                            "chart"
+                        ],
+                        "title": "Scope",
+                        "default": "sql"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "instruction",
+                    "questions"
+                ],
+                "title": "Instruction"
+            },
+            "SemanticsPreparationError": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "const": "OTHERS",
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "SemanticsPreparationError"
+            },
+            "SemanticsPreparationRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "mdl": {
+                        "type": "string",
+                        "title": "Mdl"
+                    },
+                    "mdl_hash": {
+                        "type": "string",
+                        "title": "Mdl Hash"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "mdl",
+                    "mdl_hash"
+                ],
+                "title": "SemanticsPreparationRequest"
+            },
+            "SemanticsPreparationResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "SemanticsPreparationResponse"
+            },
+            "SemanticsPreparationStatusResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "indexing",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SemanticsPreparationError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "SemanticsPreparationStatusResponse"
+            },
+            "SqlAnswerError": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "const": "OTHERS",
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "SqlAnswerError"
+            },
+            "SqlAnswerRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "query": {
+                        "type": "string",
+                        "title": "Query"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "sql_data": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Sql Data"
+                    },
+                    "custom_instruction": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Custom Instruction"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query",
+                    "sql",
+                    "sql_data"
+                ],
+                "title": "SqlAnswerRequest"
+            },
+            "SqlAnswerResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "SqlAnswerResponse"
+            },
+            "SqlAnswerResultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "preprocessing",
+                            "succeeded",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "num_rows_used_in_llm": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Num Rows Used In Llm"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SqlAnswerError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "SqlAnswerResultResponse"
+            },
+            "SqlPair": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql",
+                        "default": ""
+                    },
+                    "question": {
+                        "type": "string",
+                        "title": "Question",
+                        "default": ""
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "SqlPair"
+            },
+            "SqlQuestionError": {
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "const": "OTHERS",
+                        "title": "Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "title": "SqlQuestionError"
+            },
+            "SqlQuestionRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "sqls": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Sqls"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sqls"
+                ],
+                "title": "SqlQuestionRequest"
+            },
+            "SqlQuestionResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "SqlQuestionResponse"
+            },
+            "SqlQuestionResultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "generating",
+                            "succeeded",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SqlQuestionError"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "questions": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Questions"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "SqlQuestionResultResponse"
+            },
+            "StopAskFeedbackRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "status": {
+                        "type": "string",
+                        "const": "stopped",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "StopAskFeedbackRequest"
+            },
+            "StopAskFeedbackResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "StopAskFeedbackResponse"
+            },
+            "StopAskRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "status": {
+                        "type": "string",
+                        "const": "stopped",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "StopAskRequest"
+            },
+            "StopAskResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "StopAskResponse"
+            },
+            "StopChartAdjustmentRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "status": {
+                        "type": "string",
+                        "const": "stopped",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "StopChartAdjustmentRequest"
+            },
+            "StopChartAdjustmentResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "StopChartAdjustmentResponse"
+            },
+            "StopChartRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "status": {
+                        "type": "string",
+                        "const": "stopped",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "StopChartRequest"
+            },
+            "StopChartResponse": {
+                "properties": {
+                    "query_id": {
+                        "type": "string",
+                        "title": "Query Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "query_id"
+                ],
+                "title": "StopChartResponse"
+            },
+            "Timezone": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "default": "UTC"
+                    },
+                    "utc_offset": {
+                        "type": "string",
+                        "title": "Utc Offset",
+                        "default": ""
+                    }
+                },
+                "type": "object",
+                "title": "Timezone"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            },
+            "src__web__v1__routers__instructions__DeleteRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "instruction_ids": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Instruction Ids"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instruction_ids"
+                ],
+                "title": "DeleteRequest"
+            },
+            "src__web__v1__routers__instructions__GetResponse": {
+                "properties": {
+                    "event_id": {
+                        "type": "string",
+                        "title": "Event Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "indexing",
+                            "deleting",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Error"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "event_id",
+                    "status",
+                    "error",
+                    "trace_id"
+                ],
+                "title": "GetResponse"
+            },
+            "src__web__v1__routers__instructions__PostRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "instructions": {
+                        "items": {
+                            "$ref": "#/components/schemas/Instruction"
+                        },
+                        "type": "array",
+                        "title": "Instructions"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instructions"
+                ],
+                "title": "PostRequest"
+            },
+            "src__web__v1__routers__instructions__PostResponse": {
+                "properties": {
+                    "event_id": {
+                        "type": "string",
+                        "title": "Event Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "event_id"
+                ],
+                "title": "PostResponse"
+            },
+            "src__web__v1__routers__question_recommendation__GetResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "generating",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Response"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Error"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "status",
+                    "response",
+                    "error"
+                ],
+                "title": "GetResponse"
+            },
+            "src__web__v1__routers__question_recommendation__PostRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "mdl": {
+                        "type": "string",
+                        "title": "Mdl"
+                    },
+                    "previous_questions": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Previous Questions",
+                        "default": []
+                    },
+                    "max_questions": {
+                        "type": "integer",
+                        "title": "Max Questions",
+                        "default": 5
+                    },
+                    "max_categories": {
+                        "type": "integer",
+                        "title": "Max Categories",
+                        "default": 3
+                    },
+                    "regenerate": {
+                        "type": "boolean",
+                        "title": "Regenerate",
+                        "default": false
+                    },
+                    "allow_data_preview": {
+                        "type": "boolean",
+                        "title": "Allow Data Preview",
+                        "default": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "mdl"
+                ],
+                "title": "PostRequest"
+            },
+            "src__web__v1__routers__question_recommendation__PostResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "PostResponse"
+            },
+            "src__web__v1__routers__relationship_recommendation__GetResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "generating",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Response"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Error"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "status",
+                    "response",
+                    "error"
+                ],
+                "title": "GetResponse"
+            },
+            "src__web__v1__routers__relationship_recommendation__PostRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "mdl": {
+                        "type": "string",
+                        "title": "Mdl"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "mdl"
+                ],
+                "title": "PostRequest"
+            },
+            "src__web__v1__routers__relationship_recommendation__PostResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "PostResponse"
+            },
+            "src__web__v1__routers__semantics_description__GetResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "generating",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "additionalProperties": true,
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Response"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Error"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "status",
+                    "response",
+                    "error"
+                ],
+                "title": "GetResponse"
+            },
+            "src__web__v1__routers__semantics_description__PostRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "selected_models": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Selected Models"
+                    },
+                    "user_prompt": {
+                        "type": "string",
+                        "title": "User Prompt"
+                    },
+                    "mdl": {
+                        "type": "string",
+                        "title": "Mdl"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "selected_models",
+                    "user_prompt",
+                    "mdl"
+                ],
+                "title": "PostRequest"
+            },
+            "src__web__v1__routers__semantics_description__PostResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "PostResponse"
+            },
+            "src__web__v1__routers__sql_corrections__GetResponse": {
+                "properties": {
+                    "event_id": {
+                        "type": "string",
+                        "title": "Event Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "correcting",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "response": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Response"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Error"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    },
+                    "invalid_sql": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Invalid Sql"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "event_id",
+                    "status"
+                ],
+                "title": "GetResponse"
+            },
+            "src__web__v1__routers__sql_corrections__PostRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "error": {
+                        "type": "string",
+                        "title": "Error"
+                    },
+                    "retrieved_tables": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Retrieved Tables"
+                    },
+                    "use_dry_plan": {
+                        "type": "boolean",
+                        "title": "Use Dry Plan",
+                        "default": false
+                    },
+                    "allow_dry_plan_fallback": {
+                        "type": "boolean",
+                        "title": "Allow Dry Plan Fallback",
+                        "default": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sql",
+                    "error"
+                ],
+                "title": "PostRequest"
+            },
+            "src__web__v1__routers__sql_corrections__PostResponse": {
+                "properties": {
+                    "event_id": {
+                        "type": "string",
+                        "title": "Event Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "event_id"
+                ],
+                "title": "PostResponse"
+            },
+            "src__web__v1__routers__sql_pairs__DeleteRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "sql_pair_ids": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Sql Pair Ids"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sql_pair_ids"
+                ],
+                "title": "DeleteRequest"
+            },
+            "src__web__v1__routers__sql_pairs__GetResponse": {
+                "properties": {
+                    "event_id": {
+                        "type": "string",
+                        "title": "Event Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "indexing",
+                            "deleting",
+                            "finished",
+                            "failed"
+                        ],
+                        "title": "Status"
+                    },
+                    "error": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": true,
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Error"
+                    },
+                    "trace_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Trace Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "event_id",
+                    "status",
+                    "error",
+                    "trace_id"
+                ],
+                "title": "GetResponse"
+            },
+            "src__web__v1__routers__sql_pairs__PostRequest": {
+                "properties": {
+                    "project_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Project Id"
+                    },
+                    "thread_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thread Id"
+                    },
+                    "configurations": {
+                        "$ref": "#/components/schemas/Configuration"
+                    },
+                    "request_from": {
+                        "type": "string",
+                        "enum": [
+                            "ui",
+                            "api"
+                        ],
+                        "title": "Request From",
+                        "default": "ui"
+                    },
+                    "sql_pairs": {
+                        "items": {
+                            "$ref": "#/components/schemas/SqlPair"
+                        },
+                        "type": "array",
+                        "title": "Sql Pairs"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sql_pairs"
+                ],
+                "title": "PostRequest"
+            },
+            "src__web__v1__routers__sql_pairs__PostResponse": {
+                "properties": {
+                    "event_id": {
+                        "type": "string",
+                        "title": "Event Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "event_id"
+                ],
+                "title": "PostResponse"
+            }
+        }
+    }
+}

@@ -24,6 +24,7 @@ def picked_models(mdl: dict, selected_models: list[str]) -> list[dict]:
         return "relationship" not in column
 
     def column_formatter(columns: list[dict]) -> list[dict]:
+        logger.info("column: %s", columns)
         return [
             {
                 "name": column["name"],

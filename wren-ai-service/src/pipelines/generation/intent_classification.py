@@ -276,9 +276,19 @@ def prompt(
     instructions: Optional[list[dict]] = None,
     configuration: Configuration | None = None,
 ) -> dict:
+    # Handle case where configuration is None or a dict
+    if configuration is None:
+        language = "English"
+    elif hasattr(configuration, "language"):
+        language = configuration.language
+    elif isinstance(configuration, dict) and "language" in configuration:
+        language = configuration["language"]
+    else:
+        language = "English"
+
     _prompt = prompt_builder.run(
         query=query,
-        language=configuration.language,
+        language=language,
         db_schemas=construct_db_schemas,
         histories=histories,
         sql_samples=sql_samples,

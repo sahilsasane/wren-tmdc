@@ -1,0 +1,2932 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Wren Engine API",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/v2/connector/{data_source}/query": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Query",
+                "description": "query the specified data source",
+                "operationId": "query_v2_connector__data_source__query_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    },
+                    {
+                        "name": "dryRun",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "enable dryRun mode for validating SQL only",
+                            "default": false,
+                            "title": "Dryrun"
+                        },
+                        "description": "enable dryRun mode for validating SQL only"
+                    },
+                    {
+                        "name": "cacheEnable",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "enable query cache mode",
+                            "default": false,
+                            "title": "Cacheenable"
+                        },
+                        "description": "enable query cache mode"
+                    },
+                    {
+                        "name": "overrideCache",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "ovrride the exist cache",
+                            "default": false,
+                            "title": "Overridecache"
+                        },
+                        "description": "ovrride the exist cache"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "limit the number of rows returned",
+                            "title": "Limit"
+                        },
+                        "description": "limit the number of rows returned"
+                    },
+                    {
+                        "name": "is_fallback",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Is Fallback"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QueryDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/{data_source}/validate/{rule_name}": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Validate",
+                "description": "validate the specified rule",
+                "operationId": "validate_v2_connector__data_source__validate__rule_name__post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    },
+                    {
+                        "name": "rule_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Rule Name"
+                        }
+                    },
+                    {
+                        "name": "is_fallback",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Is Fallback"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ValidateDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/{data_source}/metadata/tables": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Get Table List",
+                "description": "get the table list of the specified data source",
+                "operationId": "get_table_list_v2_connector__data_source__metadata_tables_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MetadataDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Table"
+                                    },
+                                    "title": "Response Get Table List V2 Connector  Data Source  Metadata Tables Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/{data_source}/metadata/constraints": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Get Constraints",
+                "description": "get the constraints of the specified data source",
+                "operationId": "get_constraints_v2_connector__data_source__metadata_constraints_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MetadataDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Constraint"
+                                    },
+                                    "title": "Response Get Constraints V2 Connector  Data Source  Metadata Constraints Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/{data_source}/metadata/version": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Get Db Version",
+                "description": "get the version of the specified data source",
+                "operationId": "get_db_version_v2_connector__data_source__metadata_version_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MetadataDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Get Db Version V2 Connector  Data Source  Metadata Version Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/dry-plan": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Dry Plan",
+                "description": "get the planned WrenSQL",
+                "operationId": "dry_plan_v2_connector_dry_plan_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "is_fallback",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Is Fallback"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DryPlanDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Dry Plan V2 Connector Dry Plan Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/{data_source}/dry-plan": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Dry Plan For Data Source",
+                "description": "get the dialect SQL for the specified data source",
+                "operationId": "dry_plan_for_data_source_v2_connector__data_source__dry_plan_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    },
+                    {
+                        "name": "is_fallback",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Is Fallback"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DryPlanDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Dry Plan For Data Source V2 Connector  Data Source  Dry Plan Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/connector/{data_source}/model-substitute": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Model Substitute",
+                "description": "get the SQL which table name is substituted",
+                "operationId": "model_substitute_v2_connector__data_source__model_substitute_post",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    },
+                    {
+                        "name": "is_fallback",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Is Fallback"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TranspileDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Model Substitute V2 Connector  Data Source  Model Substitute Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/analysis/sql": {
+            "get": {
+                "tags": [
+                    "analysis"
+                ],
+                "summary": "Analyze Sql",
+                "operationId": "analyze_sql_v2_analysis_sql_get",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AnalyzeSQLDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "type": "object"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Analyze Sql V2 Analysis Sql Get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/v2/analysis/sqls": {
+            "get": {
+                "tags": [
+                    "analysis"
+                ],
+                "summary": "Analyze Sql Batch",
+                "operationId": "analyze_sql_batch_v2_analysis_sqls_get",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AnalyzeSQLBatchDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "items": {
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Analyze Sql Batch V2 Analysis Sqls Get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/v3/connector/{data_source}/query": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Query",
+                "description": "query the specified data source",
+                "operationId": "query_v3_connector__data_source__query_post",
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    },
+                    {
+                        "name": "dryRun",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "enable dryRun mode for validating SQL only",
+                            "default": false,
+                            "title": "Dryrun"
+                        },
+                        "description": "enable dryRun mode for validating SQL only"
+                    },
+                    {
+                        "name": "cacheEnable",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "enable query cache mode",
+                            "default": false,
+                            "title": "Cacheenable"
+                        },
+                        "description": "enable query cache mode"
+                    },
+                    {
+                        "name": "overrideCache",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "ovrride the exist cache",
+                            "default": false,
+                            "title": "Overridecache"
+                        },
+                        "description": "ovrride the exist cache"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "limit the number of rows returned",
+                            "title": "Limit"
+                        },
+                        "description": "limit the number of rows returned"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QueryDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/connector/dry-plan": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Dry Plan",
+                "description": "get the planned WrenSQL",
+                "operationId": "dry_plan_v3_connector_dry_plan_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DryPlanDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Dry Plan V3 Connector Dry Plan Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/connector/{data_source}/dry-plan": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Dry Plan For Data Source",
+                "description": "get the dialect SQL for the specified data source",
+                "operationId": "dry_plan_for_data_source_v3_connector__data_source__dry_plan_post",
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DryPlanDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Dry Plan For Data Source V3 Connector  Data Source  Dry Plan Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/connector/{data_source}/validate/{rule_name}": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Validate",
+                "description": "validate the specified rule",
+                "operationId": "validate_v3_connector__data_source__validate__rule_name__post",
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    },
+                    {
+                        "name": "rule_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Rule Name"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ValidateDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/connector/{data_source}/functions": {
+            "get": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Functions",
+                "description": "get the available function list of the specified data source",
+                "operationId": "functions_v3_connector__data_source__functions_get",
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/connector/{data_source}/model-substitute": {
+            "post": {
+                "tags": [
+                    "connector"
+                ],
+                "summary": "Model Substitute",
+                "description": "get the SQL which table name is substituted",
+                "operationId": "model_substitute_v3_connector__data_source__model_substitute_post",
+                "parameters": [
+                    {
+                        "name": "data_source",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DataSource"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TranspileDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Response Model Substitute V3 Connector  Data Source  Model Substitute Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "summary": "Root",
+                "operationId": "root__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Health",
+                "operationId": "health_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/config": {
+            "get": {
+                "summary": "Provide Config",
+                "operationId": "provide_config_config_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update Config",
+                "operationId": "update_config_config_patch",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConfigModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AnalyzeSQLBatchDTO": {
+                "properties": {
+                    "manifestStr": {
+                        "type": "string",
+                        "title": "Manifeststr",
+                        "description": "Base64 manifest"
+                    },
+                    "sqls": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Sqls"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "manifestStr",
+                    "sqls"
+                ],
+                "title": "AnalyzeSQLBatchDTO"
+            },
+            "AnalyzeSQLDTO": {
+                "properties": {
+                    "manifestStr": {
+                        "type": "string",
+                        "title": "Manifeststr",
+                        "description": "Base64 manifest"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "manifestStr",
+                    "sql"
+                ],
+                "title": "AnalyzeSQLDTO"
+            },
+            "AthenaConnectionInfo": {
+                "properties": {
+                    "s3_staging_dir": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "S3 Staging Dir",
+                        "description": "S3 staging directory for Athena queries",
+                        "writeOnly": true,
+                        "examples": [
+                            "s3://my-bucket/athena-staging/"
+                        ]
+                    },
+                    "aws_access_key_id": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Aws Access Key Id",
+                        "description": "AWS access key ID",
+                        "writeOnly": true,
+                        "examples": [
+                            "AKIA..."
+                        ]
+                    },
+                    "aws_secret_access_key": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Aws Secret Access Key",
+                        "description": "AWS secret access key",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-secret-key"
+                        ]
+                    },
+                    "region_name": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Region Name",
+                        "description": "AWS region for Athena",
+                        "writeOnly": true,
+                        "examples": [
+                            "us-west-2",
+                            "us-east-1"
+                        ]
+                    },
+                    "schema_name": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Schema Name",
+                        "description": "The database name in Athena",
+                        "writeOnly": true,
+                        "examples": [
+                            "default"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "s3_staging_dir",
+                    "aws_access_key_id",
+                    "aws_secret_access_key",
+                    "region_name",
+                    "schema_name"
+                ],
+                "title": "AthenaConnectionInfo"
+            },
+            "BigQueryConnectionInfo": {
+                "properties": {
+                    "project_id": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Project Id",
+                        "description": "GCP project id",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-project"
+                        ]
+                    },
+                    "dataset_id": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Dataset Id",
+                        "description": "BigQuery dataset id",
+                        "writeOnly": true,
+                        "examples": [
+                            "my_dataset"
+                        ]
+                    },
+                    "credentials": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Credentials",
+                        "description": "Base64 encode `credentials.json`",
+                        "writeOnly": true,
+                        "examples": [
+                            "eyJ..."
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "project_id",
+                    "dataset_id",
+                    "credentials"
+                ],
+                "title": "BigQueryConnectionInfo"
+            },
+            "CannerConnectionInfo": {
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "8080"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "admin"
+                        ]
+                    },
+                    "pat": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Pat",
+                        "description": "the personal access token of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "eyJ..."
+                        ]
+                    },
+                    "workspace": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Workspace",
+                        "description": "the workspace of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "default"
+                        ]
+                    },
+                    "enableSSL": {
+                        "type": "boolean",
+                        "title": "Enablessl",
+                        "description": "Enable SSL connection",
+                        "default": false
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "host",
+                    "port",
+                    "user",
+                    "pat",
+                    "workspace"
+                ],
+                "title": "CannerConnectionInfo"
+            },
+            "Column": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Type"
+                    },
+                    "notNull": {
+                        "type": "boolean",
+                        "title": "Notnull"
+                    },
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "properties": {
+                        "anyOf": [
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Properties"
+                    },
+                    "nestedColumns": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/components/schemas/Column"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Nestedcolumns"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "type",
+                    "notNull"
+                ],
+                "title": "Column"
+            },
+            "ConfigModel": {
+                "properties": {
+                    "diagnose": {
+                        "type": "boolean",
+                        "title": "Diagnose"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "diagnose"
+                ],
+                "title": "ConfigModel"
+            },
+            "ConnectionUrl": {
+                "properties": {
+                    "connectionUrl": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Connectionurl",
+                        "writeOnly": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "connectionUrl"
+                ],
+                "title": "ConnectionUrl"
+            },
+            "Constraint": {
+                "properties": {
+                    "constraintName": {
+                        "type": "string",
+                        "title": "Constraintname"
+                    },
+                    "constraintType": {
+                        "$ref": "#/components/schemas/ConstraintType"
+                    },
+                    "constraintTable": {
+                        "type": "string",
+                        "title": "Constrainttable"
+                    },
+                    "constraintColumn": {
+                        "type": "string",
+                        "title": "Constraintcolumn"
+                    },
+                    "constraintedTable": {
+                        "type": "string",
+                        "title": "Constraintedtable"
+                    },
+                    "constraintedColumn": {
+                        "type": "string",
+                        "title": "Constraintedcolumn"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "constraintName",
+                    "constraintType",
+                    "constraintTable",
+                    "constraintColumn",
+                    "constraintedTable",
+                    "constraintedColumn"
+                ],
+                "title": "Constraint"
+            },
+            "ConstraintType": {
+                "type": "string",
+                "enum": [
+                    "PRIMARY KEY",
+                    "FOREIGN KEY",
+                    "UNIQUE"
+                ],
+                "title": "ConstraintType"
+            },
+            "DataSource": {
+                "type": "string",
+                "enum": [
+                    "athena",
+                    "bigquery",
+                    "canner",
+                    "clickhouse",
+                    "mssql",
+                    "mysql",
+                    "oracle",
+                    "postgres",
+                    "redshift",
+                    "snowflake",
+                    "trino",
+                    "local_file",
+                    "s3_file",
+                    "minio_file",
+                    "gcs_file"
+                ],
+                "title": "DataSource"
+            },
+            "DryPlanDTO": {
+                "properties": {
+                    "manifestStr": {
+                        "type": "string",
+                        "title": "Manifeststr",
+                        "description": "Base64 manifest"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "manifestStr",
+                    "sql"
+                ],
+                "title": "DryPlanDTO"
+            },
+            "GcsFileConnectionInfo": {
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Url",
+                        "description": "the root path of the gcs bucket",
+                        "default": "/",
+                        "writeOnly": true,
+                        "examples": [
+                            "/data"
+                        ]
+                    },
+                    "format": {
+                        "type": "string",
+                        "title": "Format",
+                        "description": "File format",
+                        "default": "csv",
+                        "examples": [
+                            "csv",
+                            "parquet",
+                            "json"
+                        ]
+                    },
+                    "bucket": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Bucket",
+                        "description": "the name of the gcs bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-bucket"
+                        ]
+                    },
+                    "key_id": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Key Id",
+                        "description": "the key id of the gcs bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-key-id"
+                        ]
+                    },
+                    "secret_key": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Secret Key",
+                        "description": "the secret key of the gcs bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-secret-key"
+                        ]
+                    },
+                    "credentials": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Credentials",
+                        "description": "Base64 encode `credentials.json`",
+                        "writeOnly": true,
+                        "examples": [
+                            "eyJ..."
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucket",
+                    "key_id",
+                    "secret_key"
+                ],
+                "title": "GcsFileConnectionInfo"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "LocalFileConnectionInfo": {
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Url",
+                        "description": "the root path of the local file",
+                        "default": "/",
+                        "writeOnly": true,
+                        "examples": [
+                            "/data"
+                        ]
+                    },
+                    "format": {
+                        "type": "string",
+                        "title": "Format",
+                        "description": "File format",
+                        "default": "csv",
+                        "examples": [
+                            "csv",
+                            "parquet",
+                            "json"
+                        ]
+                    }
+                },
+                "type": "object",
+                "title": "LocalFileConnectionInfo"
+            },
+            "MSSqlConnectionInfo": {
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "1433"
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "master"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "sa"
+                        ]
+                    },
+                    "password": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "examples": [
+                            "password"
+                        ]
+                    },
+                    "driver": {
+                        "type": "string",
+                        "title": "Driver",
+                        "description": "The ODBC driver to use",
+                        "default": "ODBC Driver 18 for SQL Server"
+                    },
+                    "TDS_Version": {
+                        "type": "string",
+                        "title": "Tds Version",
+                        "description": "The TDS version to use",
+                        "default": "8.0"
+                    },
+                    "kwargs": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Kwargs",
+                        "description": "Additional keyword arguments to pass to PyODBC"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "host",
+                    "port",
+                    "database",
+                    "user"
+                ],
+                "title": "MSSqlConnectionInfo"
+            },
+            "MetadataDTO": {
+                "properties": {
+                    "connectionInfo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AthenaConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BigQueryConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CannerConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ConnectionUrl"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MSSqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MySqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/OracleConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PostgresConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftIAMConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SnowflakeConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/TrinoConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/LocalFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/S3FileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MinioFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/GcsFileConnectionInfo"
+                            }
+                        ],
+                        "title": "Connectioninfo"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "connectionInfo"
+                ],
+                "title": "MetadataDTO"
+            },
+            "MinioFileConnectionInfo": {
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Url",
+                        "description": "the root path of the minio bucket",
+                        "default": "/",
+                        "writeOnly": true,
+                        "examples": [
+                            "/data"
+                        ]
+                    },
+                    "format": {
+                        "type": "string",
+                        "title": "Format",
+                        "description": "File format",
+                        "default": "csv",
+                        "examples": [
+                            "csv",
+                            "parquet",
+                            "json"
+                        ]
+                    },
+                    "ssl_enabled": {
+                        "type": "boolean",
+                        "title": "Ssl Enabled",
+                        "description": "use the ssl connection or not",
+                        "default": false,
+                        "examples": [
+                            true,
+                            false
+                        ]
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Endpoint",
+                        "description": "the endpoint of the minio bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost:9000"
+                        ]
+                    },
+                    "bucket": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Bucket",
+                        "description": "the name of the minio bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-bucket"
+                        ]
+                    },
+                    "access_key": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Access Key",
+                        "description": "the account of the minio bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-account"
+                        ]
+                    },
+                    "secret_key": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Secret Key",
+                        "description": "the The password of the minio bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-password"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "endpoint",
+                    "bucket",
+                    "access_key",
+                    "secret_key"
+                ],
+                "title": "MinioFileConnectionInfo"
+            },
+            "MySqlConnectionInfo": {
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "3306"
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "default"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "root"
+                        ]
+                    },
+                    "password": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "examples": [
+                            "password"
+                        ]
+                    },
+                    "sslMode": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sslmode",
+                        "description": "Use ssl connection or not. The default value is `ENABLED` because MySQL uses `caching_sha2_password` by default and the driver MySQLdb support caching_sha2_password with ssl only.",
+                        "default": "ENABLED",
+                        "examples": [
+                            "DISABLED",
+                            "ENABLED",
+                            "VERIFY_CA"
+                        ]
+                    },
+                    "sslCA": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sslca",
+                        "description": "The path to the CA certificate file"
+                    },
+                    "kwargs": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Kwargs",
+                        "description": "Additional keyword arguments to pass to PyMySQL"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "host",
+                    "port",
+                    "database",
+                    "user"
+                ],
+                "title": "MySqlConnectionInfo"
+            },
+            "OracleConnectionInfo": {
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "default": "localhost",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "default": "1521",
+                        "writeOnly": true,
+                        "examples": [
+                            1521
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "default": "orcl",
+                        "writeOnly": true,
+                        "examples": [
+                            "orcl"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "admin"
+                        ]
+                    },
+                    "password": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "examples": [
+                            "password"
+                        ]
+                    },
+                    "dsn": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Dsn",
+                        "description": "An Oracle Data Source Name. If provided, overrides all other connection arguments except username and password.",
+                        "examples": [
+                            "localhost:1521/orcl"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user"
+                ],
+                "title": "OracleConnectionInfo"
+            },
+            "PostgresConnectionInfo": {
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            5432
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "postgres"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "postgres"
+                        ]
+                    },
+                    "password": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "examples": [
+                            "password"
+                        ]
+                    },
+                    "kwargs": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Kwargs",
+                        "description": "Additional keyword arguments to pass to the backend client connection."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "host",
+                    "port",
+                    "database",
+                    "user"
+                ],
+                "title": "PostgresConnectionInfo"
+            },
+            "QueryDTO": {
+                "properties": {
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    },
+                    "manifestStr": {
+                        "type": "string",
+                        "title": "Manifeststr",
+                        "description": "Base64 manifest"
+                    },
+                    "connectionInfo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AthenaConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BigQueryConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CannerConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ConnectionUrl"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MSSqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MySqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/OracleConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PostgresConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftIAMConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SnowflakeConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/TrinoConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/LocalFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/S3FileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MinioFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/GcsFileConnectionInfo"
+                            }
+                        ],
+                        "title": "Connectioninfo"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sql",
+                    "manifestStr",
+                    "connectionInfo"
+                ],
+                "title": "QueryDTO"
+            },
+            "RedshiftConnectionInfo": {
+                "properties": {
+                    "redshift_type": {
+                        "type": "string",
+                        "const": "redshift",
+                        "title": "Redshift Type",
+                        "default": "redshift"
+                    },
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "5439"
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "dev"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "awsuser"
+                        ]
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "password"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "host",
+                    "port",
+                    "database",
+                    "user",
+                    "password"
+                ],
+                "title": "RedshiftConnectionInfo"
+            },
+            "RedshiftIAMConnectionInfo": {
+                "properties": {
+                    "redshift_type": {
+                        "type": "string",
+                        "const": "redshift_iam",
+                        "title": "Redshift Type",
+                        "default": "redshift_iam"
+                    },
+                    "cluster_identifier": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Cluster Identifier",
+                        "description": "the cluster identifier of your Redshift cluster",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-redshift-cluster"
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "dev"
+                        ]
+                    },
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "awsuser"
+                        ]
+                    },
+                    "region": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Region",
+                        "description": "the region of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "us-west-2"
+                        ]
+                    },
+                    "access_key_id": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Access Key Id",
+                        "description": "the access key id of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "AKIA..."
+                        ]
+                    },
+                    "access_key_secret": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Access Key Secret",
+                        "description": "the secret access key of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-secret-key"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cluster_identifier",
+                    "database",
+                    "user",
+                    "region",
+                    "access_key_id",
+                    "access_key_secret"
+                ],
+                "title": "RedshiftIAMConnectionInfo"
+            },
+            "S3FileConnectionInfo": {
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Url",
+                        "description": "the root path of the s3 bucket",
+                        "default": "/",
+                        "writeOnly": true,
+                        "examples": [
+                            "/data"
+                        ]
+                    },
+                    "format": {
+                        "type": "string",
+                        "title": "Format",
+                        "description": "File format",
+                        "default": "csv",
+                        "examples": [
+                            "csv",
+                            "parquet",
+                            "json"
+                        ]
+                    },
+                    "bucket": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Bucket",
+                        "description": "the name of the s3 bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-bucket"
+                        ]
+                    },
+                    "region": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Region",
+                        "description": "the region of the s3 bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "us-west-2"
+                        ]
+                    },
+                    "access_key": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Access Key",
+                        "description": "the access key of the s3 bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-access-key"
+                        ]
+                    },
+                    "secret_key": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Secret Key",
+                        "description": "the secret key of the s3 bucket",
+                        "writeOnly": true,
+                        "examples": [
+                            "my-secret-key"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucket",
+                    "region",
+                    "access_key",
+                    "secret_key"
+                ],
+                "title": "S3FileConnectionInfo"
+            },
+            "SnowflakeConnectionInfo": {
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "User",
+                        "description": "the username of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "admin"
+                        ]
+                    },
+                    "password": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "examples": [
+                            "password"
+                        ]
+                    },
+                    "account": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Account",
+                        "description": "the account name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "myaccount"
+                        ]
+                    },
+                    "database": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Database",
+                        "description": "the database name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "mydb"
+                        ]
+                    },
+                    "schema": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Schema",
+                        "description": "the schema name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "myschema"
+                        ]
+                    },
+                    "warehouse": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Warehouse",
+                        "description": "the warehouse name of your database",
+                        "examples": [
+                            "COMPUTE_WH"
+                        ]
+                    },
+                    "private_key": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Private Key",
+                        "description": "the private key for key pair authentication",
+                        "examples": [
+                            "private_key_content"
+                        ]
+                    },
+                    "kwargs": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Kwargs",
+                        "description": "Additional arguments passed to the DBAPI connection call."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user",
+                    "account",
+                    "database",
+                    "schema"
+                ],
+                "title": "SnowflakeConnectionInfo"
+            },
+            "Table": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "columns": {
+                        "items": {
+                            "$ref": "#/components/schemas/Column"
+                        },
+                        "type": "array",
+                        "title": "Columns"
+                    },
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "properties": {
+                        "$ref": "#/components/schemas/TableProperties"
+                    },
+                    "primaryKey": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Primarykey"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "columns"
+                ],
+                "title": "Table"
+            },
+            "TableProperties": {
+                "properties": {
+                    "schema": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Schema"
+                    },
+                    "catalog": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Catalog"
+                    },
+                    "table": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Table"
+                    },
+                    "path": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Path"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "catalog",
+                    "table"
+                ],
+                "title": "TableProperties"
+            },
+            "TranspileDTO": {
+                "properties": {
+                    "manifestStr": {
+                        "type": "string",
+                        "title": "Manifeststr",
+                        "description": "Base64 manifest"
+                    },
+                    "connectionInfo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AthenaConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BigQueryConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CannerConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ConnectionUrl"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MSSqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MySqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/OracleConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PostgresConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftIAMConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SnowflakeConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/TrinoConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/LocalFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/S3FileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MinioFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/GcsFileConnectionInfo"
+                            }
+                        ],
+                        "title": "Connectioninfo"
+                    },
+                    "sql": {
+                        "type": "string",
+                        "title": "Sql"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "manifestStr",
+                    "connectionInfo",
+                    "sql"
+                ],
+                "title": "TranspileDTO"
+            },
+            "TrinoConnectionInfo": {
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Host",
+                        "description": "the hostname of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "localhost"
+                        ]
+                    },
+                    "port": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Port",
+                        "description": "the port of your database",
+                        "default": "8080",
+                        "writeOnly": true
+                    },
+                    "catalog": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Catalog",
+                        "description": "the catalog name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "hive"
+                        ]
+                    },
+                    "schema": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Schema",
+                        "description": "the schema name of your database",
+                        "writeOnly": true,
+                        "examples": [
+                            "default"
+                        ]
+                    },
+                    "user": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "User",
+                        "description": "the username of your database",
+                        "examples": [
+                            "admin"
+                        ]
+                    },
+                    "password": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "password",
+                                "writeOnly": true
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Password",
+                        "description": "the password of your database",
+                        "examples": [
+                            "password"
+                        ]
+                    },
+                    "kwargs": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Kwargs",
+                        "description": "Additional keyword arguments passed directly to the trino.dbapi.connect API."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "host",
+                    "catalog",
+                    "schema"
+                ],
+                "title": "TrinoConnectionInfo"
+            },
+            "ValidateDTO": {
+                "properties": {
+                    "manifestStr": {
+                        "type": "string",
+                        "title": "Manifeststr",
+                        "description": "Base64 manifest"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "title": "Parameters"
+                    },
+                    "connectionInfo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AthenaConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BigQueryConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CannerConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ConnectionUrl"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MSSqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MySqlConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/OracleConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PostgresConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/RedshiftIAMConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SnowflakeConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/TrinoConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/LocalFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/S3FileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/MinioFileConnectionInfo"
+                            },
+                            {
+                                "$ref": "#/components/schemas/GcsFileConnectionInfo"
+                            }
+                        ],
+                        "title": "Connectioninfo"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "manifestStr",
+                    "parameters",
+                    "connectionInfo"
+                ],
+                "title": "ValidateDTO"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}

@@ -27,10 +27,31 @@ down:
 	docker compose -f ./tools/dev/docker-compose-dev.yaml --env-file ./tools/dev/.env down
 
 start: force_update_config
-	poetry run python -m src.__main__
+	python -m src.__main__
+
+# UV-based commands
+start-uv: force_update_config_uv
+	source .venv/bin/activate && python -m src.__main__
+
+force_update_config_uv:
+	source .venv/bin/activate && python -m src.force_update_config
+
+# Initialize Qdrant collections by running the initialization script
+init-collections:
+	@echo "{{GREEN}}Initializing Qdrant collections...{{RESET}}"
+	source .venv/bin/activate && python init_qdrant_collections.py
+
+# Force create Qdrant collections
+create-collections:
+	@echo "{{GREEN}}Creating Qdrant collections...{{RESET}}"
+	source .venv/bin/activate && python create_qdrant_collections.py
 
 curate_eval_data:
 	poetry run streamlit run eval/data_curation/app.py
+
+# UV version
+curate_eval_data_uv:
+	source .venv/bin/activate && streamlit run eval/data_curation/app.py
 
 prep dataset='spider1.0':
 	poetry run python -m eval.preparation --dataset {{dataset}}

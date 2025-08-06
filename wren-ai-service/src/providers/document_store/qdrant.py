@@ -158,9 +158,38 @@ class AsyncQdrantDocumentStore(QdrantDocumentStore):
 
         # to improve the indexing performance
         # see https://qdrant.tech/documentation/guides/multiple-partitions/?q=mul#calibrate-performance
-        self.client.create_payload_index(
-            collection_name=index, field_name="project_id", field_schema="keyword"
-        )
+        # Use the synchronous client from parent class, or create one if it doesn't exist
+        if hasattr(self, "_client") and self._client is not None:
+            self._client.create_payload_index(
+                collection_name=index, field_name="project_id", field_schema="keyword"
+            )
+        else:
+            # Fallback: create a synchronous client for this operation
+            sync_client = qdrant_client.QdrantClient(
+                location=location,
+                url=url,
+                port=port,
+                grpc_port=grpc_port,
+                prefer_grpc=prefer_grpc,
+                https=https,
+                api_key=api_key.resolve_value() if api_key else None,
+                prefix=prefix,
+                timeout=timeout,
+                host=host,
+                path=path,
+                force_disable_check_same_thread=force_disable_check_same_thread,
+                metadata=metadata or {},
+            )
+            try:
+                sync_client.create_payload_index(
+                    collection_name=index,
+                    field_name="project_id",
+                    field_schema="keyword",
+                )
+            except Exception as e:
+                logger.warning(f"Failed to create payload index: {e}")
+            finally:
+                sync_client.close()
 
     async def _query_by_embedding(
         self,
