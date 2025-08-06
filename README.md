@@ -112,28 +112,6 @@ Check [configuration examples here](https://github.com/Canner/WrenAI/tree/main/w
 
 Visit [Wren AI documentation](https://docs.getwren.ai/oss/overview/introduction?utm_source=github&utm_medium=content&utm_campaign=readme) to view the full documentation.
 
-## 📪 Keep Posted?
-
-[Subscribe our blog](https://www.getwren.ai/blog/?utm_source=github&utm_medium=content&utm_campaign=readme) and [Follow our LinkedIn](https://www.linkedin.com/company/wrenai)
-
-## 🛠️ Contribution
-
-1.	Star ⭐ the repo to show support (it really helps).
-2.	Open an issue for bugs, ideas, or discussions.
-3.	Read [Contribution Guidelines](https://github.com/Canner/WrenAI/blob/main/CONTRIBUTING.md) for setup & PR guidelines.
-
-## ⭐️ Community
-
-- Join 1.3k+ developers in our [Discord](https://discord.gg/5DvshJqG8Z) for real-time help and roadmap previews.
-- If there are any issues, please visit [GitHub Issues](https://github.com/Canner/WrenAI/issues).
-- Explore our [public roadmap](https://wrenai.notion.site/) to stay updated on upcoming features and improvements!
-
-Please note that our [Code of Conduct](./CODE_OF_CONDUCT.md) applies to all Wren AI community channels. Users are **highly encouraged** to read and adhere to them to avoid repercussions.
-
-## 🎉 Our Contributors
-<a href="https://github.com/canner/wrenAI/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Canner/WrenAI" />
-</a>
 
 <p align="right">
   <a href="#top">⬆️ Back to Top</a>
